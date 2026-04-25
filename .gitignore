@@ -1,1 +1,5 @@
 .DS_Store
+**/.claude/settings.local.json
+expense-tracker/expenses.json
+expense-tracker/__pycache__/
+expense-tracker/*.pyc
