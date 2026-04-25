@@ -238,7 +238,6 @@ class ExpenseTracker:
         expense = Expense.create_new(amount, category.strip(), description.strip())
         self.expenses.append(expense)
         self.save_data()
-        print(f"Expense added: {CURRENCY_SYMBOL}{amount:.2f} for {category}")
         return True
 
     def get_all_expenses(self) -> List[Expense]:
@@ -328,15 +327,12 @@ class ExpenseTrackerUI:
         try:
             amount_str = input(f"Enter amount: {CURRENCY_SYMBOL}")
             amount = float(amount_str)
-
-            if amount <= 0:
-                print("Amount must be positive!")
-                return
-
             category = input("Enter category: ").strip()
             description = input("Enter description: ").strip()
 
-            if not self.tracker.add_expense(amount, category, description):
+            if self.tracker.add_expense(amount, category, description):
+                print(f"Expense added: {CURRENCY_SYMBOL}{amount:.2f} for {category}")
+            else:
                 print("Failed to add expense. Please check your input.")
 
         except ValueError:
